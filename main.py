@@ -18,12 +18,18 @@ import os
 LETTER = "Z"
 
 
-def main() -> None:
-    if len(LETTER) != 1 or not ("A" <= LETTER <= "Z"):
+def validate_letter(letter: str) -> str:
+    """Return the letter unchanged if it is exactly one character A-Z."""
+    if len(letter) != 1 or not ("A" <= letter <= "Z"):
         raise ValueError("LETTER must be exactly one character A-Z")
+    return letter
+
+
+def main() -> None:
+    letter = validate_letter(LETTER)
     os.makedirs("/output", exist_ok=True)
     with open("/output/entry.txt", "w", encoding="utf-8", newline="") as f:
-        f.write(LETTER)
+        f.write(letter)
 
 
 if __name__ == "__main__":
